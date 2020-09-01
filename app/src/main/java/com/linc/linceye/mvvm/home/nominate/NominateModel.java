@@ -1,5 +1,6 @@
 package com.linc.linceye.mvvm.home.nominate;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -33,6 +34,8 @@ import org.json.JSONObject;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
 import io.reactivex.rxjava3.functions.Function;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -85,7 +88,10 @@ public class NominateModel<T> extends BasePagingModel<T> {
                                 case "followCard":
                                     FollowCardBean followCardBean = GsonUtils.fromLocalJson(currentObject.toString(),
                                             FollowCardBean.class);
-                                    parseFollowCard(viewModels, followCardBean);
+                                    if (followCardBean == null){
+                                        continue;
+                                    }
+                                    paresFollowCard(viewModels, Objects.requireNonNull(followCardBean));
                                     break;
                                 }
                             }
@@ -127,40 +133,33 @@ public class NominateModel<T> extends BasePagingModel<T> {
         viewModels.add(titleViewModel);
         //解析精选视频
         for (int i = 0; i < squareCardCollectionBean.getData().getItemList().size(); i++){
-            parseFollowCard(viewModels, squareCardCollectionBean.getData().getItemList().get(i));
+            paresFollowCard(viewModels, squareCardCollectionBean.getData().getItemList().get(i));
         }
     }
 
-    private void parseFollowCard(List<BaseCustomViewModel> viewModels, FollowCardBean followCardBean) {
+    private void paresFollowCard(List<BaseCustomViewModel> viewModelList,
+                                 FollowCardBean cardBean)
+    {
         FollowCardViewModel followCardViewModel = new FollowCardViewModel();
-        followCardViewModel.coverUrl = followCardBean.getData().getContent().getData().getCover().getDetail();
-        followCardViewModel.videoTime = followCardBean.getData().getContent().getData().getDuration();
-        followCardViewModel.authorUrl = followCardBean.getData().getContent().getData().getAuthor().getIcon();
-        followCardViewModel.description = followCardBean.getData().getContent().getData().getAuthor().getName()
-                + "/ #"
-                + followCardBean.getData().getContent().getData().getCategory();
+        followCardViewModel.coverUrl =
+                cardBean.getData().getContent().getData().getCover().getDetail();
+        followCardViewModel.videoTime =
+                cardBean.getData().getContent().getData().getDuration();
+        followCardViewModel.authorUrl =
+                cardBean.getData().getContent().getData().getAuthor().getIcon();
+        followCardViewModel.description =
+                cardBean.getData().getContent().getData().getAuthor().getName()
+                        + " / #"
+                        + cardBean.getData().getContent().getData().getCategory();
         followCardViewModel.title =
-                followCardBean.getData().getContent().getData().getTitle();
-        followCardViewModel.nickName = followCardBean.getData().getContent().getData().getAuthor().getName();
-        followCardViewModel.video_description = followCardBean.getData().getContent().getData().getDescription();
-        followCardViewModel.userDescription = followCardBean.getData().getContent().getData().getAuthor().getDescription();
-        followCardViewModel.playerUrl = followCardBean.getData().getContent().getData().getPlayUrl();
-        followCardViewModel.blurredUrl = followCardBean.getData().getContent().getData().getCover().getBlurred();
-        followCardViewModel.videoId = followCardBean.getData().getContent().getData().getId();
-//        followCardViewModel.coverUrl.set(followCardBean.getData().getContent().getData().getCover().getDetail());
-//        followCardViewModel.videoTime.set(followCardBean.getData().getContent().getData().getDuration());
-//        followCardViewModel.authorUrl.set(followCardBean.getData().getContent().getData().getAuthor().getIcon());
-//        followCardViewModel.description.set(followCardBean.getData().getContent().getData().getAuthor().getName()
-//                + "/ #"
-//                + followCardBean.getData().getContent().getData().getCategory());
-//        followCardViewModel.title.set(followCardBean.getData().getContent().getData().getTitle());
-//        followCardViewModel.nickName.set(followCardBean.getData().getContent().getData().getAuthor().getName());
-//        followCardViewModel.setVideo_description(followCardBean.getData().getContent().getData().getDescription());
-//        followCardViewModel.setUserDescription(followCardBean.getData().getContent().getData().getAuthor().getDescription());
-//        followCardViewModel.setPlayerUrl(followCardBean.getData().getContent().getData().getPlayUrl());
-//        followCardViewModel.setBlurredUrl(followCardBean.getData().getContent().getData().getCover().getBlurred());
-//        followCardViewModel.setVideoId(followCardBean.getData().getContent().getData().getId());
-        viewModels.add(followCardViewModel);
+                cardBean.getData().getContent().getData().getTitle();
+        followCardViewModel.nickName = cardBean.getData().getContent().getData().getAuthor().getName();
+        followCardViewModel.video_description = cardBean.getData().getContent().getData().getDescription();
+        followCardViewModel.userDescription = cardBean.getData().getContent().getData().getAuthor().getDescription();
+        followCardViewModel.playerUrl = cardBean.getData().getContent().getData().getPlayUrl();
+        followCardViewModel.blurredUrl = cardBean.getData().getContent().getData().getCover().getBlurred();
+        followCardViewModel.videoId = cardBean.getData().getContent().getData().getId();
+        viewModelList.add(followCardViewModel);
     }
 
     private void parseVideoCard(List<BaseCustomViewModel> viewModels, VideoSmallCardBean videoSmallCardBean) {

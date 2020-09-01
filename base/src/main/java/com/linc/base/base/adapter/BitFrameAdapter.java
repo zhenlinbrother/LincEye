@@ -2,6 +2,7 @@ package com.linc.base.base.adapter;
 
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.linc.base.base.listener.IStateListener;
 import com.linc.base.base.listener.StateViewHolderListener;
@@ -330,6 +332,23 @@ public class BitFrameAdapter extends LRefreshAndLoadMoreAdapter {
 
     @Override
     public void onViewAttachedToWindow(RecyclerView.ViewHolder holder) {
+        ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
+        if (holder.getLayoutPosition() == 0 && layoutParams != null && layoutParams instanceof StaggeredGridLayoutManager.LayoutParams){
+            StaggeredGridLayoutManager.LayoutParams staggeredGridLayoutLayoutParams =
+                    (StaggeredGridLayoutManager.LayoutParams) layoutParams;
+            staggeredGridLayoutLayoutParams.setFullSpan(true);
+        }
+
+        Log.d("fwerwrw", "onViewAttachedToWindow: position = " + holder.getLayoutPosition() + "isLoadingHolder: " + String.valueOf(holder instanceof LoadingViewHolder));
+        if (holder.getLayoutPosition() != 0
+                && layoutParams != null
+                && holder instanceof LRefreshAndLoadMoreAdapter.LLoadMoreViewHolder
+                && layoutParams instanceof StaggeredGridLayoutManager.LayoutParams){
+            StaggeredGridLayoutManager.LayoutParams staggeredGridLayoutLayoutParams =
+                    (StaggeredGridLayoutManager.LayoutParams) layoutParams;
+            staggeredGridLayoutLayoutParams.setFullSpan(true);
+        }
+
         if (mRealAdapter != null && !(holder instanceof LoadingViewHolder)) {
             mRealAdapter.onViewAttachedToWindow(holder);
         }

@@ -56,4 +56,8 @@ public interface ApiService {
 
     @GET("api/v2/replies/video")
     Observable<JSONObject> getRetryData(@Query("videoId") int videoId);
+
+    @GET("api/v7/community/tab/rec")
+    Single<JSONObject> getCommunityRecommend(@Query("startScore") String startScore,
+                                             @Query("pageCount") int pageCount);
 }

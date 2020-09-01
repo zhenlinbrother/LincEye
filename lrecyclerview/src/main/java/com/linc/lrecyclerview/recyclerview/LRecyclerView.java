@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 
 import com.linc.lrecyclerview.adapter.LRefreshAndLoadMoreAdapter;
@@ -122,7 +123,7 @@ public class LRecyclerView extends RecyclerView {
                 }
 
                 int visibleHeight;
-                if (this.getRefreshLoadView() != null && this.isScrolledTop()){
+                if (this.getRefreshLoadView() != null && this.isScrolledTop(e)){
                     visibleHeight = this.getRefreshVisibleHeight();
                     if (visibleHeight != -1){
                         this.getRefreshLoadView().onMove(visibleHeight, deltaY >> 1);
@@ -160,7 +161,14 @@ public class LRecyclerView extends RecyclerView {
 
     //判断是否滑动到顶部
     //todo 可以继续优化当LayoutManager 为网格布局或者瀑布流布局时
-    private boolean isScrolledTop(){
+    private boolean isScrolledTop(MotionEvent e){
+        if (this.getLayoutManager() instanceof StaggeredGridLayoutManager){
+            StaggeredGridLayoutManager layoutManager = (StaggeredGridLayoutManager) getLayoutManager();
+            return this.getChildCount() > 1
+                    && this.getChildAt(0) instanceof IBaseRefreshLoadView
+                    && this.getChildAt(1).getY() >= 0.0f
+                    && layoutManager.findFirstVisibleItemPositions(new int[layoutManager.getSpanCount()])[0] == 0;
+        }
         return this.getChildCount() > 1
                 && this.getChildAt(0) instanceof IBaseRefreshLoadView
                 && ((LinearLayoutManager)this.getLayoutManager()).findFirstVisibleItemPosition() <= 1

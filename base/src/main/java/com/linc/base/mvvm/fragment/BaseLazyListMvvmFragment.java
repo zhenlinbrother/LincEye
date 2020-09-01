@@ -71,7 +71,7 @@ public abstract class BaseLazyListMvvmFragment<V extends ViewDataBinding, VM ext
     }
 
 
-    private void initRecyclerView(LRecyclerView recyclerView) {
+    public   void initRecyclerView(LRecyclerView recyclerView) {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 

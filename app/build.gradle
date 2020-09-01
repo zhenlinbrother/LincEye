@@ -69,4 +69,7 @@ dependencies {
     }
     implementation "com.android.support:multidex:1.0.3"
     implementation "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.0-beta11"
+    api 'com.scwang.smart:refresh-layout-kernel:2.0.0-alpha-1'
+    api 'com.scwang.smart:refresh-header-classics:2.0.0-alpha-1'
+    api 'com.scwang.smart:refresh-footer-classics:2.0.0-alpha-1'
 }
