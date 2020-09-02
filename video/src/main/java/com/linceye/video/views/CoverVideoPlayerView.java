@@ -43,7 +43,7 @@ public class CoverVideoPlayerView extends StandardGSYVideoPlayer {
 
     private String mCoverOriginUrl;
 
-    private RelativeLayout rvContent;
+    public RelativeLayout rvContent;
 
     private int mDefaultRes;
 

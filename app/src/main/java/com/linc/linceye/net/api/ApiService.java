@@ -51,13 +51,41 @@ public interface ApiService {
     Single<JSONObject> getDailyData(@Query("date") String date,
                                     @Query("num") int num);
 
+    /**
+     * 视频-推荐
+     * @param id
+     * @return
+     */
     @GET("api/v4/video/related")
     Observable<JSONObject> getRecommendData(@Query("id") int id);
 
+    /**
+     * 视频-回复
+     * @param videoId
+     * @return
+     */
     @GET("api/v2/replies/video")
     Observable<JSONObject> getRetryData(@Query("videoId") int videoId);
 
+    /**
+     * 社区-推荐
+     * @param startScore
+     * @param pageCount
+     * @return
+     */
     @GET("api/v7/community/tab/rec")
     Single<JSONObject> getCommunityRecommend(@Query("startScore") String startScore,
                                              @Query("pageCount") int pageCount);
+
+    /**
+     * 社区-关注
+     * @param start
+     * @param num
+     * @param newest
+     * @return
+     */
+    @GET("api/v6/community/tab/follow")
+    Single<JSONObject> getAttentionData(@Query("start") int start,
+                                        @Query("num") int num,
+                                        @Query("newest") boolean newest);
 }

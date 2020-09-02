@@ -8,6 +8,7 @@ import com.linc.base.mvvm.viewmodel.IMvvmBaseViewModel;
 import com.linc.linceye.R;
 import com.linc.linceye.base.adapter.CommonPageAdapter;
 import com.linc.linceye.databinding.FragmentCommunityBinding;
+import com.linc.linceye.mvvm.community.attention.AttentionFragment;
 import com.linc.linceye.mvvm.community.recommend.RecommendFragment;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class CommunityFragment extends BaseLazyMvvmFragment<FragmentCommunityBin
 
     List<Fragment> fragments = new ArrayList<>();
     private CommonPageAdapter pageAdapter;
-    private String[] tables = {"推荐"};
+    private String[] tables = {"推荐","关注"};
 
     @Override
     protected void getFirstData() {
@@ -36,6 +37,7 @@ public class CommunityFragment extends BaseLazyMvvmFragment<FragmentCommunityBin
     protected void onFragmentFirstVisible() {
         super.onFragmentFirstVisible();
         fragments.add(RecommendFragment.newInstance());
+        fragments.add(AttentionFragment.newInstance());
         initView();
     }
 

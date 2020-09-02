@@ -68,7 +68,8 @@ public class ScrollCalculatorHelper {
      * @param view
      */
     private void playVideo(RecyclerView view) {
-        if (view == null){
+        if (view == null)
+        {
             return;
         }
 
@@ -76,40 +77,50 @@ public class ScrollCalculatorHelper {
 
         GSYBaseVideoPlayer gsyBaseVideoPlayer = null;
 
-        boolean isNeedPlay = false;
+        boolean needPlay = false;
 
-        for (int i = 0; i < visibleCount; i++){
+        for (int i = 0; i < visibleCount; i++)
+        {
             if (layoutManager.getChildAt(i) != null
-                    && layoutManager.getChildAt(i).findViewById(playId) != null){
-
-                GSYBaseVideoPlayer player = (GSYBaseVideoPlayer) layoutManager.getChildAt(i);
+                    && layoutManager.getChildAt(i).findViewById(playId) != null)
+            {
+                GSYBaseVideoPlayer player =
+                        (GSYBaseVideoPlayer)layoutManager.getChildAt(i)
+                                .findViewById(playId);
                 Rect rect = new Rect();
                 player.getLocalVisibleRect(rect);
                 int height = player.getHeight();
-                //说明第一个完全可视
-                if (rect.top == 0 && rect.bottom == height){
+                // 说明第一个完全可视
+                if (rect.top == 0 && rect.bottom == height)
+                {
                     gsyBaseVideoPlayer = player;
-                    if (player.getCurrentPlayer().getCurrentState() == GSYBaseVideoPlayer.CURRENT_STATE_NORMAL
-                            || player.getCurrentPlayer().getCurrentState() == GSYBaseVideoPlayer.CURRENT_STATE_ERROR){
-                        isNeedPlay = true;
+                    if ((player.getCurrentPlayer()
+                            .getCurrentState() == GSYBaseVideoPlayer.CURRENT_STATE_NORMAL
+                            || player.getCurrentPlayer()
+                            .getCurrentState() == GSYBaseVideoPlayer.CURRENT_STATE_ERROR))
+                    {
+                        needPlay = true;
                     }
                     break;
                 }
+
             }
         }
 
-        if (gsyBaseVideoPlayer != null && isNeedPlay){
-            if (runnable != null){
+        if (gsyBaseVideoPlayer != null && needPlay)
+        {
+            if (runnable != null)
+            {
                 GSYBaseVideoPlayer tmpPlayer = runnable.gsyBaseVideoPlayer;
                 playHandler.removeCallbacks(runnable);
                 runnable = null;
-                if (tmpPlayer == gsyBaseVideoPlayer){
+                if (tmpPlayer == gsyBaseVideoPlayer)
+                {
                     return;
                 }
             }
-
             runnable = new PlayRunnable(gsyBaseVideoPlayer);
-            //降低频率
+            // 降低频率
             playHandler.postDelayed(runnable, 400);
         }
     }
