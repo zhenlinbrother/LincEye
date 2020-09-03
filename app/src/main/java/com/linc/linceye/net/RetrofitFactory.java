@@ -31,4 +31,17 @@ public class RetrofitFactory {
         return API_SERVICE;
     }
 
+    public static ApiService getApiService(String domain){
+
+        if (API_SERVICE == null){
+            synchronized (LOCK){
+                if (API_SERVICE == null){
+                    API_SERVICE = new RetrofitHelper(domain, OkHttpHelper.getOkHttpClient())
+                            .create(ApiService.class);
+                }
+            }
+        }
+        return API_SERVICE;
+    }
+
 }

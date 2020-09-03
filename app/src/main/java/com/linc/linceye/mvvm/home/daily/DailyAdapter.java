@@ -1,6 +1,8 @@
 package com.linc.linceye.mvvm.home.daily;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -11,8 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.linc.linceye.R;
 import com.linc.linceye.base.adapter.CommonSimpleAdapter;
 import com.linc.linceye.base.viewmodel.BaseCustomViewModel;
+import com.linc.linceye.databinding.HomeItemFollowCardViewBinding;
 import com.linc.linceye.mvvm.home.nominate.adapter.NominateAdapter;
 import com.linc.linceye.mvvm.home.nominate.adapter.NominateItemType;
+import com.linc.linceye.mvvm.home.nominate.bean.viewmodel.FollowCardViewModel;
+import com.linc.linceye.mvvm.player.VideoPlayerActivity;
+import com.linc.linceye.mvvm.player.bean.VideoHeaderBean;
 
 import java.util.List;
 
@@ -47,6 +53,31 @@ public class DailyAdapter extends CommonSimpleAdapter<BaseCustomViewModel> {
             NominateAdapter.FollowCardViewHolder followCardViewHolder
                     = (NominateAdapter.FollowCardViewHolder) holder;
             followCardViewHolder.bindData(mData.get(position));
+
+            FollowCardViewModel cardViewModel = (FollowCardViewModel) mData.get(position);
+            HomeItemFollowCardViewBinding binding = (HomeItemFollowCardViewBinding) followCardViewHolder.getBinding();
+            binding.ivVideoCover.setOnClickListener(v -> {
+                VideoHeaderBean headerBean = new VideoHeaderBean(
+                        cardViewModel.title,
+                        cardViewModel.description,
+                        cardViewModel.video_description,
+                        cardViewModel.collectionCount,
+                        cardViewModel.shareCount,
+                        cardViewModel.authorUrl,
+                        cardViewModel.nickName,
+                        cardViewModel.userDescription,
+                        cardViewModel.playerUrl,
+                        cardViewModel.blurredUrl,
+                        cardViewModel.videoId
+                );
+
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("video_header_bean", headerBean);
+                Intent intent = new Intent(mContext.get(), VideoPlayerActivity.class);
+                intent.putExtras(bundle);
+                mContext.get().startActivity(intent);
+            });
+
         } else {
             NominateAdapter.SingleTitleViewHolder singleTitleViewHolder
                     = (NominateAdapter.SingleTitleViewHolder) holder;

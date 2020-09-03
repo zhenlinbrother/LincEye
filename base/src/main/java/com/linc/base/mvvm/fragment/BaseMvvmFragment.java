@@ -57,6 +57,19 @@ public abstract class BaseMvvmFragment<VM extends IMvvmBaseViewModel, V extends 
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         Log.d(TAG, "onAttach: ");
+
+        Bundle arguments = getArguments();
+        if (arguments != null){
+            this.initArgs(arguments);
+        }
+    }
+
+    /**
+     * 初始化参数
+     * @param arguments
+     */
+    protected void initArgs(Bundle arguments){
+
     }
 
     @Override

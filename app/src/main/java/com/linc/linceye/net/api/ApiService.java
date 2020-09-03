@@ -2,6 +2,7 @@ package com.linc.linceye.net.api;
 
 import com.linc.linceye.bean.RespData;
 import com.linc.linceye.mvvm.home.nominate.bean.ItemListBean;
+import com.linc.linceye.mvvm.more.themes.bean.TabInfo;
 
 
 import org.json.JSONObject;
@@ -10,6 +11,7 @@ import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
 import retrofit2.http.Field;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -88,4 +90,17 @@ public interface ApiService {
     Single<JSONObject> getAttentionData(@Query("start") int start,
                                         @Query("num") int num,
                                         @Query("newest") boolean newest);
+
+    /**
+     * 通知-主题 tab数据
+     * @return
+     */
+    @GET("api/v7/tag/tabList")
+    Single<JSONObject> getTabData();
+
+
+    @GET("api/v7/tag/childTab/{id}")
+    Single<JSONObject> getChildThemeContent(@Path ("id") int position,
+                                            @Query("start") int start,
+                                            @Query("num") int num);
 }

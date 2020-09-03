@@ -1,6 +1,8 @@
 package com.linc.linceye.mvvm.home.discover.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -15,12 +17,16 @@ import com.linc.linceye.base.viewholder.BaseViewHolder;
 import com.linc.linceye.base.viewmodel.BaseCustomViewModel;
 import com.linc.linceye.databinding.HomeItemCategoryCardViewBinding;
 import com.linc.linceye.databinding.HomeItemSubjectCardViewBinding;
+import com.linc.linceye.databinding.HomeItemVideoCardViewBinding;
 import com.linc.linceye.mvvm.home.discover.bean.CategoryCardBean;
 import com.linc.linceye.mvvm.home.discover.bean.SquareCard;
 import com.linc.linceye.mvvm.home.discover.bean.SubjectCardBean;
 import com.linc.linceye.mvvm.home.discover.bean.viewmodel.IDisCoverItemType;
 import com.linc.linceye.mvvm.home.discover.bean.viewmodel.TopBannerViewModel;
 import com.linc.linceye.mvvm.home.nominate.adapter.NominateItemType;
+import com.linc.linceye.mvvm.home.nominate.bean.viewmodel.VideoCardViewModel;
+import com.linc.linceye.mvvm.player.VideoPlayerActivity;
+import com.linc.linceye.mvvm.player.bean.VideoHeaderBean;
 import com.linc.linceye.utils.DensityUtils;
 import com.linc.linceye.utils.RecyclerItemDecoration;
 
@@ -96,6 +102,31 @@ public class DiscoverAdapter extends CommonSimpleAdapter<BaseCustomViewModel> {
         } else if (holder instanceof VideoCardViewHolder){
             VideoCardViewHolder videoCardViewHolder = (VideoCardViewHolder) holder;
             videoCardViewHolder.bindData(mData.get(position));
+
+            VideoCardViewModel cardViewModel = (VideoCardViewModel) mData.get(position);
+            HomeItemVideoCardViewBinding binding = (HomeItemVideoCardViewBinding) videoCardViewHolder.getBinding();
+
+            binding.ivVideoCover.setOnClickListener(v -> {
+                VideoHeaderBean headerBean = new VideoHeaderBean(
+                        cardViewModel.title,
+                        cardViewModel.description,
+                        cardViewModel.video_description,
+                        cardViewModel.collectionCount,
+                        cardViewModel.shareCount,
+                        cardViewModel.authorUrl,
+                        cardViewModel.nickName,
+                        cardViewModel.userDescription,
+                        cardViewModel.playerUrl,
+                        cardViewModel.blurredUrl,
+                        cardViewModel.videoId
+                );
+
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("video_header_bean", headerBean);
+                Intent intent = new Intent(mContext.get(), VideoPlayerActivity.class);
+                intent.putExtras(bundle);
+                mContext.get().startActivity(intent);
+            });
         } else {
             ThemeViewHolder themeViewHolder = (ThemeViewHolder) holder;
             themeViewHolder.bindData(mData.get(position));
