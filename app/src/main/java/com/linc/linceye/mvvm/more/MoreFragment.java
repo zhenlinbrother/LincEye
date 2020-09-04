@@ -8,6 +8,8 @@ import com.linc.base.mvvm.viewmodel.IMvvmBaseViewModel;
 import com.linc.linceye.R;
 import com.linc.linceye.base.adapter.CommonPageAdapter;
 import com.linc.linceye.databinding.FragmentCommunityBinding;
+import com.linc.linceye.mvvm.more.interaction.InteractionFragment;
+import com.linc.linceye.mvvm.more.push.PushFragment;
 import com.linc.linceye.mvvm.more.themes.ThemesFragment;
 
 import java.util.ArrayList;
@@ -17,7 +19,7 @@ public class MoreFragment extends BaseLazyMvvmFragment<FragmentCommunityBinding,
 
     private List<Fragment> fragments = new ArrayList<>();
     private CommonPageAdapter pageAdapter;
-    private String[] tables = {"主题"};
+    private String[] tables = {"主题", "推送", "互动"};
     @Override
     protected void getFirstData() { }
 
@@ -25,6 +27,8 @@ public class MoreFragment extends BaseLazyMvvmFragment<FragmentCommunityBinding,
     protected void onFragmentFirstVisible() {
         super.onFragmentFirstVisible();
         fragments.add(ThemesFragment.newInstance());
+        fragments.add(PushFragment.newInstance());
+        fragments.add(InteractionFragment.newInstance());
         initView();
     }
 
