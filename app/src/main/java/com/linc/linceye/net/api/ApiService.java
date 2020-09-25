@@ -99,8 +99,31 @@ public interface ApiService {
     Single<JSONObject> getTabData();
 
 
+    /**
+     * 通知-主题 子页面数据
+     * @param position 位置
+     * @param start 开始
+     * @param num 请求数量
+     * @return
+     */
     @GET("api/v7/tag/childTab/{id}")
     Single<JSONObject> getChildThemeContent(@Path ("id") int position,
                                             @Query("start") int start,
                                             @Query("num") int num);
+
+    /**
+     * 通知-推送
+     * @param vc
+     * @param deviceModel
+     * @return
+     */
+    @GET("api/v3/messages")
+    Single<JSONObject> getPushData(@Query("vc") String vc,
+                                   @Query("deviceModel") String deviceModel,
+                                   @Query("start") int start,
+                                   @Query("num") int num);
+
+    @GET("api/v7/topic/list")
+    Single<JSONObject> getInteractionData(@Query("start") int start,
+                                          @Query("num") int num);
 }

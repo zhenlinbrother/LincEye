@@ -50,9 +50,9 @@ public class RecommendFragment
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
         mBinding.recycleView.setLayoutManager(layoutManager);
-        mBinding.recycleView.addItemDecoration(new RecyclerItemDecoration(0,
+        mBinding.recycleView.addItemDecoration(new RecyclerItemDecoration(DensityUtils.dp2px(getContext(), 3),
                 0,
-                DensityUtils.dp2px(getContext(), 5),
+                DensityUtils.dp2px(getContext(), 3),
                 DensityUtils.dp2px(getContext(), 5)));
 
         mViewModel.initModel();

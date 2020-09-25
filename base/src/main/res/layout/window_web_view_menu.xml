@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="140dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="7dp"
+        android:layout_height="3.5dp"
+        android:layout_marginStart="110dp"
+        android:layout_marginEnd="21.5dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_triangle_up_black"
+        android:layout_marginLeft="110dp"
+        android:layout_marginRight="21.5dp" />
+    
+    <LinearLayout
+        android:id="@+id/ll_crop"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:background="@drawable/shape_black_top_10dp_rect"
+        android:orientation="horizontal">
+        
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_share"
+            android:padding="5dp"
+            android:layout_marginLeft="5dp"/>
+        
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="分享"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:gravity="center_vertical"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="130dp"
+        android:layout_height="0.5dp"
+        android:background="#999999"/>
+
+    <LinearLayout
+        android:id="@+id/ll_open"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:background="#666666"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_browser"
+            android:padding="5dp"
+            android:layout_marginLeft="5dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="浏览器打开"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:gravity="center_vertical"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="130dp"
+        android:layout_height="0.5dp"
+        android:background="#999999"/>
+
+    <LinearLayout
+        android:id="@+id/ll_refresh"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:background="@drawable/shape_black_bottom_10dp_rect"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_webview_refresh"
+            android:padding="5dp"
+            android:layout_marginLeft="5dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="刷新"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:gravity="center_vertical"/>
+    </LinearLayout>
+</LinearLayout>

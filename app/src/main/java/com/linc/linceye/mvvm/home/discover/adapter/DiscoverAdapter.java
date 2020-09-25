@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -11,25 +12,34 @@ import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.linc.base.web.BaseWebViewActivity;
 import com.linc.linceye.R;
 import com.linc.linceye.base.adapter.CommonSimpleAdapter;
 import com.linc.linceye.base.viewholder.BaseViewHolder;
 import com.linc.linceye.base.viewmodel.BaseCustomViewModel;
 import com.linc.linceye.databinding.HomeItemCategoryCardViewBinding;
 import com.linc.linceye.databinding.HomeItemSubjectCardViewBinding;
+import com.linc.linceye.databinding.HomeItemTopBannerViewBinding;
 import com.linc.linceye.databinding.HomeItemVideoCardViewBinding;
 import com.linc.linceye.mvvm.home.discover.bean.CategoryCardBean;
 import com.linc.linceye.mvvm.home.discover.bean.SquareCard;
 import com.linc.linceye.mvvm.home.discover.bean.SubjectCardBean;
+import com.linc.linceye.mvvm.home.discover.bean.TopBannerBean;
+import com.linc.linceye.mvvm.home.discover.bean.viewmodel.DiscoverBannerProvider;
 import com.linc.linceye.mvvm.home.discover.bean.viewmodel.IDisCoverItemType;
 import com.linc.linceye.mvvm.home.discover.bean.viewmodel.TopBannerViewModel;
 import com.linc.linceye.mvvm.home.nominate.adapter.NominateItemType;
+import com.linc.linceye.mvvm.home.nominate.bean.viewmodel.NetBannerProvider;
 import com.linc.linceye.mvvm.home.nominate.bean.viewmodel.VideoCardViewModel;
 import com.linc.linceye.mvvm.player.VideoPlayerActivity;
 import com.linc.linceye.mvvm.player.bean.VideoHeaderBean;
 import com.linc.linceye.utils.DensityUtils;
 import com.linc.linceye.utils.RecyclerItemDecoration;
+import com.zhpan.bannerview.BannerViewPager;
+import com.zhpan.bannerview.constants.PageStyle;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,8 +89,27 @@ public class DiscoverAdapter extends CommonSimpleAdapter<BaseCustomViewModel> {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof TopBannerViewHolder){
-            TopBannerViewHolder topBannerViewModel = (TopBannerViewHolder) holder;
-            topBannerViewModel.bindData(mData.get(position));
+            TopBannerViewHolder topBannerViewHolder = (TopBannerViewHolder) holder;
+            HomeItemTopBannerViewBinding binding =
+                    (HomeItemTopBannerViewBinding) topBannerViewHolder.getBinding();
+            TopBannerViewModel topBannerViewModel = (TopBannerViewModel) mData.get(position);
+
+            binding.bvTop.setHolderCreator(DiscoverBannerProvider::new)
+                    .setPageStyle(PageStyle.MULTI_PAGE_OVERLAP)
+                    .create(topBannerViewModel.topBannerBean.getData().getItemList());
+
+            binding.bvTop.setOnPageClickListener(new BannerViewPager.OnPageClickListener() {
+                @Override
+                public void onPageClick(int position) {
+                    try {
+                        String decodeUrl = URLDecoder.decode(topBannerViewModel.topBannerBean.getData().getItemList().get(position).getData().getActionUrl(), "UTF-8");
+                        judgeIsUrl(decodeUrl);
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
         } else if (holder instanceof CategoryCardViewHolder){
             CategoryCardViewHolder categoryCardViewHolder = (CategoryCardViewHolder) holder;
 
@@ -130,6 +159,18 @@ public class DiscoverAdapter extends CommonSimpleAdapter<BaseCustomViewModel> {
         } else {
             ThemeViewHolder themeViewHolder = (ThemeViewHolder) holder;
             themeViewHolder.bindData(mData.get(position));
+        }
+    }
+
+    private void judgeIsUrl(String decodeUrl) {
+        if (decodeUrl.startsWith("eyepetizer://webview/?title=")){
+            String[] contents = decodeUrl.split("title=");
+            String title = contents[contents.length - 1].split("&url")[0];
+            String url = decodeUrl.split("url=")[decodeUrl.split("url").length - 1];
+
+            BaseWebViewActivity.startActivity(mContext.get(), url, title);
+        } else {
+            Toast.makeText(mContext.get(), "该功能即将开放，敬请期待", Toast.LENGTH_SHORT).show();
         }
     }
 

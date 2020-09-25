@@ -9,23 +9,20 @@
             type="com.linc.linceye.mvvm.home.discover.bean.viewmodel.TopBannerViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="220dp">
 
-        <ImageView
-            android:id="@+id/iv_top_banner"
-            imageUrl="@{viewModel.bannerUrl}"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+        <com.zhpan.bannerview.BannerViewPager
+            android:id="@+id/bv_top"
+            android:layout_width="match_parent"
             android:layout_margin="10dp"
-            android:scaleType="fitXY"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:background="@drawable/common_tools_iv_bg" />
+            app:bvp_indicator_checked_color="@android:color/holo_red_dark"
+            app:bvp_indicator_normal_color="@android:color/darker_gray"
+            app:bvp_page_margin="10dp"
+            app:bvp_reveal_width="20dp"
+            android:layout_height="160dp"/>
         
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
     
 </layout>

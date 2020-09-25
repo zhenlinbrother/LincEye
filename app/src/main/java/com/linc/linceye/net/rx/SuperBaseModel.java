@@ -125,6 +125,7 @@ public abstract class SuperBaseModel<T> implements IModel {
      *
      * @param listener listener
      */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void unRegister(IBaseModelListener listener)
     {
         if (null == listener)

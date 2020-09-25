@@ -178,7 +178,7 @@ public class TopBannerBean implements Serializable {
                 private int id;
                 private String title;
                 private String description;
-                private String image;
+                public String image;
                 private String actionUrl;
                 private boolean shade;
                 private LabelBean label;

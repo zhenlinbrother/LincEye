@@ -3,6 +3,7 @@ package com.linc.lrecyclerview.recyclerview;
 import android.content.Context;
 import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -333,6 +334,7 @@ public class LRecyclerView extends RecyclerView {
                 } else {
                     int top = view.getTop();
                     int bottom = view.getBottom();
+                    Log.d(TAG,  bottom - top + "");
                     return bottom - top;
                 }
             }

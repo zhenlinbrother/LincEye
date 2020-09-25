@@ -146,6 +146,9 @@ public class BaseWebViewFragment extends Fragment implements ProgressWebView.OnS
 
         addJavascriptInterface();
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            settings.setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
+        }
     }
 
     @SuppressLint("AddJavascriptInterface")
@@ -226,6 +229,10 @@ public class BaseWebViewFragment extends Fragment implements ProgressWebView.OnS
         super.onDestroy();
     }
 
+    public void reload(){
+        mWebView.reload();
+    }
+
     @Override
     public void onChange(WebView webView, int newProgress) {
 
@@ -264,6 +271,7 @@ public class BaseWebViewFragment extends Fragment implements ProgressWebView.OnS
                     .onReceivedSslError(view, handler, error);
         }
     }
+
 
     /**
      * 回调监听器

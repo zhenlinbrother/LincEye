@@ -51,7 +51,7 @@ public class DiscoverModel<T> extends BaseModel<T> {
                                     case "horizontalScrollCard":
                                         TopBannerBean topBannerBean = GsonUtils.fromLocalJson(currentObject.toString(), TopBannerBean.class);
                                         TopBannerViewModel topBannerViewModel = new TopBannerViewModel();
-                                        topBannerViewModel.bannerUrl = topBannerBean.getData().getItemList().get(0).getData().getImage();
+                                        topBannerViewModel.topBannerBean = topBannerBean;
                                         viewModels.add(topBannerViewModel);
                                         break;
                                     case "specialSquareCardCollection":
