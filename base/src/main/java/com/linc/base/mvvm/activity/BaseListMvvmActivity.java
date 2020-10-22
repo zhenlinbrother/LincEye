@@ -72,6 +72,7 @@ public abstract class BaseListMvvmActivity<V extends ViewDataBinding, VM extends
 
         this.initAdapterForChild(adapter);
 
+
         this.mRecyclerView.setAdapter(this.mBaseAdapter);
     }
 

@@ -13,6 +13,8 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/base" />
+            <option value="$PROJECT_DIR$/download" />
+            <option value="$PROJECT_DIR$/lib_log" />
             <option value="$PROJECT_DIR$/lrecyclerview" />
             <option value="$PROJECT_DIR$/video" />
           </set>

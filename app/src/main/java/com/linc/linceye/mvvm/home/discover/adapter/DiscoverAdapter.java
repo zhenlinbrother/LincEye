@@ -33,6 +33,7 @@ import com.linc.linceye.mvvm.home.nominate.bean.viewmodel.NetBannerProvider;
 import com.linc.linceye.mvvm.home.nominate.bean.viewmodel.VideoCardViewModel;
 import com.linc.linceye.mvvm.player.VideoPlayerActivity;
 import com.linc.linceye.mvvm.player.bean.VideoHeaderBean;
+import com.linc.linceye.mvvm.view.GridListItemDecoration;
 import com.linc.linceye.utils.DensityUtils;
 import com.linc.linceye.utils.RecyclerItemDecoration;
 import com.zhpan.bannerview.BannerViewPager;
@@ -179,8 +180,7 @@ public class DiscoverAdapter extends CommonSimpleAdapter<BaseCustomViewModel> {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext.get(), 2);
         gridLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
         binding.rvCategoryView.setLayoutManager(gridLayoutManager);
-        binding.rvCategoryView.addItemDecoration(new RecyclerItemDecoration(0,0,
-                DensityUtils.dip2px(mContext.get(), 5), 0));
+        binding.rvCategoryView.addItemDecoration(new GridListItemDecoration(mContext.get(), 2, 2f));
 
         CategoryCardBean cardBean = (CategoryCardBean) baseCustomViewModel;
         binding.tvTitle.setText(cardBean.getData().getHeader().getTitle());

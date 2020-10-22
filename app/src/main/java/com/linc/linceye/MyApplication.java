@@ -25,4 +25,6 @@ public class MyApplication extends MultiDexApplication {
             Log.e("MyApplication", "MyApplication setRxJavaErrorHandler "  + throwable.getMessage());
         });
     }
+
+
 }
