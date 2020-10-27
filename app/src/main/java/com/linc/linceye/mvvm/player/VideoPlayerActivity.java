@@ -18,6 +18,7 @@ import com.linceye.video.helper.VideoPlayerHelper;
 import com.linceye.video.views.CoverVideoPlayerView;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.listener.GSYSampleCallBack;
+import com.shuyu.gsyvideoplayer.utils.NetInfoModule;
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils;
 
 import java.lang.reflect.Field;
@@ -98,15 +99,13 @@ public class VideoPlayerActivity
 
     @Override
     protected RecyclerView.Adapter getAdapter() {
-        return new VideoPlayerAdapter(this, mData);
+        return new VideoPlayerAdapter(this, mData, headerBean);
     }
 
     @Override
     protected void initIntent() {
         headerBean = getIntent().getParcelableExtra("video_header_bean");
     }
-
-
 
     @Override
     protected VideoPlayerViewModel getViewModel() {

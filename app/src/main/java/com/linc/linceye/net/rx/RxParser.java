@@ -84,15 +84,10 @@ public class RxParser {
      * @return
      */
     public static <T> SingleTransformer<T, T> handleSingleToResult1() {
-        return new SingleTransformer<T, T>() {
-            @Override
-            public @NonNull SingleSource<T> apply(@NonNull Single<T> upstream) {
-                return upstream
-                        .map(new TransToData<T>())
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread());
-            }
-        };
+        return upstream -> upstream
+                .map(new TransToData<T>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
 

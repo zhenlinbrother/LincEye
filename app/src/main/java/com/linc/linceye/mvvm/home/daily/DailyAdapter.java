@@ -68,7 +68,8 @@ public class DailyAdapter extends CommonSimpleAdapter<BaseCustomViewModel> {
                         cardViewModel.userDescription,
                         cardViewModel.playerUrl,
                         cardViewModel.blurredUrl,
-                        cardViewModel.videoId
+                        cardViewModel.videoId,
+                        cardViewModel.coverUrl
                 );
 
                 Bundle bundle = new Bundle();

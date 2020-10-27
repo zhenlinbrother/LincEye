@@ -3,6 +3,8 @@
     package="com.linc.linceye">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -20,6 +22,10 @@
         </activity>
 
         <activity android:name=".mvvm.player.VideoPlayerActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
+            android:launchMode="singleTop"/>
+        <activity android:name=".mvvm.download.DownloadActivity"/>
+        <activity android:name=".mvvm.loacalVideo.LocalVideoPlayerActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
             android:launchMode="singleTop"/>
     </application>

@@ -63,5 +63,5 @@ public interface IJerryDownload {
      * 获取下载信息
      * @return
      */
-    List<DownloadInfo> getDownloadInfos();
+    List<DownloadInfo> getDownloadInfos(int start, int size);
 }

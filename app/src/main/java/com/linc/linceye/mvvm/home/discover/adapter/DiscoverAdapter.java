@@ -148,9 +148,11 @@ public class DiscoverAdapter extends CommonSimpleAdapter<BaseCustomViewModel> {
                         cardViewModel.userDescription,
                         cardViewModel.playerUrl,
                         cardViewModel.blurredUrl,
-                        cardViewModel.videoId
+                        cardViewModel.videoId,
+                        cardViewModel.coverUrl
                 );
 
+                headerBean.coverUrl = cardViewModel.coverUrl;
                 Bundle bundle = new Bundle();
                 bundle.putParcelable("video_header_bean", headerBean);
                 Intent intent = new Intent(mContext.get(), VideoPlayerActivity.class);

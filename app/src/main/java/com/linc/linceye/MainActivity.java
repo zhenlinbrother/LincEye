@@ -21,6 +21,7 @@ import com.linc.linceye.base.adapter.BasePageAdapter;
 import com.linc.linceye.databinding.ActivityMainBinding;
 import com.linc.linceye.mvvm.community.CommunityFragment;
 import com.linc.linceye.mvvm.home.HomeFragment;
+import com.linc.linceye.mvvm.mine.MineFragment;
 import com.linc.linceye.mvvm.more.MoreFragment;
 import com.linc.linceye.mvvm.view.TestView;
 import com.linc.linceye.mvvm.viewmodel.TestViewModel;
@@ -69,6 +70,7 @@ public class MainActivity extends BaseMvvmActivity<IMvvmBaseViewModel, ActivityM
         fragments.add(new HomeFragment());
         fragments.add(new CommunityFragment());
         fragments.add(new MoreFragment());
+        fragments.add(new MineFragment());
         initView();
     }
 

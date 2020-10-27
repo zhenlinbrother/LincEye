@@ -38,7 +38,6 @@ public abstract class SimpleLoadMoreActivity<V extends ViewDataBinding, VM exten
 
     @Override
     protected void initData() {
-
     }
 
     protected abstract void loadData(boolean isFirst);

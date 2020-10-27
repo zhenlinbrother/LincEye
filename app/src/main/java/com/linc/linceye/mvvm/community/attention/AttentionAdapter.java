@@ -54,7 +54,8 @@ public class AttentionAdapter extends SimpleDataBindingAdapter<BaseCustomViewMod
                     item.authorDescription,
                     item.playUrl,
                     item.blurredUrl,
-                    item.videoId
+                    item.videoId,
+                    item.coverUrl
             );
             Bundle bundle = new Bundle();
             bundle.putParcelable("video_header_bean", headerBean);

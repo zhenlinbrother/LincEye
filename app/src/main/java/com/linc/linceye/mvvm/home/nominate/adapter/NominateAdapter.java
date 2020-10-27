@@ -97,7 +97,8 @@ public class NominateAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                         cardViewModel.collectionCount, cardViewModel.shareCount,
                         cardViewModel.authorUrl, cardViewModel.nickName,
                         cardViewModel.userDescription, cardViewModel.playerUrl,
-                        cardViewModel.blurredUrl, cardViewModel.videoId
+                        cardViewModel.blurredUrl, cardViewModel.videoId,
+                        cardViewModel.coverUrl
                 );
 
                 Bundle bundle = new Bundle();
@@ -123,7 +124,8 @@ public class NominateAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                         cardViewModel.collectionCount, cardViewModel.shareCount,
                         cardViewModel.authorUrl, cardViewModel.nickName,
                         cardViewModel.userDescription, cardViewModel.playerUrl,
-                        cardViewModel.blurredUrl, cardViewModel.videoId
+                        cardViewModel.blurredUrl, cardViewModel.videoId,
+                        cardViewModel.coverUrl
                 );
 
                 Bundle bundle = new Bundle();

@@ -41,6 +41,8 @@ public class VideoHeaderBean extends BaseCustomViewModel implements Parcelable
     
     public int videoId;
 
+    public String coverUrl;
+
     public VideoHeaderBean() {
 
     }
@@ -48,7 +50,7 @@ public class VideoHeaderBean extends BaseCustomViewModel implements Parcelable
     public VideoHeaderBean(String videoTitle, String category,
                            String video_description, int collectionCount, int shareCount,
                            String avatar, String nickName, String userDescription,
-                           String playerUrl, String blurredUrl, int videoId)
+                           String playerUrl, String blurredUrl, int videoId, String coverUrl)
     {
         this.videoTitle = videoTitle;
         this.category = category;
@@ -61,6 +63,7 @@ public class VideoHeaderBean extends BaseCustomViewModel implements Parcelable
         this.playerUrl = playerUrl;
         this.blurredUrl = blurredUrl;
         this.videoId = videoId;
+        this.coverUrl = coverUrl;
     }
     
     protected VideoHeaderBean(Parcel in)
@@ -76,7 +79,7 @@ public class VideoHeaderBean extends BaseCustomViewModel implements Parcelable
         playerUrl = in.readString();
         blurredUrl = in.readString();
         videoId = in.readInt();
-        
+        coverUrl = in.readString();
     }
     
     @Override
@@ -93,6 +96,7 @@ public class VideoHeaderBean extends BaseCustomViewModel implements Parcelable
         dest.writeString(playerUrl);
         dest.writeString(blurredUrl);
         dest.writeInt(videoId);
+        dest.writeString(coverUrl);
     }
     
     @Override

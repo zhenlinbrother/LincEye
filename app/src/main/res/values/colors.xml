@@ -16,4 +16,9 @@
     <color name="common_color_blue">#5790da</color>
     <color name="common_color_text_gray">#656565</color>
     <color name="common_colorWhite">#FFFFFF</color>
+    <color name="color_delete">#f5ac3b</color>
+    <color name="main_text_color">#333333</color>
+    <color name="des_text_color">#999999</color>
+    <color name="divider_color">#dddddd</color>
+    <color name="grayDark">#adadad</color>
 </resources>

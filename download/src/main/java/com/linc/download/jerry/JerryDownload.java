@@ -15,7 +15,6 @@ import com.linc.download.listener.DownloadListener;
 import com.linc.download.thread.DownloadThread;
 import com.linc.download.utils.DownloadFileUtils;
 import com.linc.download.utils.EncryptionUtils;
-import com.quanten.framework.core.utils.EncryptUtils;
 import com.raizlabs.android.dbflow.sql.language.OrderBy;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
@@ -164,7 +163,7 @@ public class JerryDownload implements IJerryDownload{
      * @return
      */
     @Override
-    public List<DownloadInfo> getDownloadInfos() {
+    public List<DownloadInfo> getDownloadInfos(int start, int size) {
         synchronized (mDownload.LOCK) {
 
             //按照添加时间，由 近期 到 久远的时间获取
@@ -175,6 +174,7 @@ public class JerryDownload implements IJerryDownload{
             List<DownloadInfo> downloadInfos = SQLite.select()
                     .from(DownloadInfo.class)
                     .orderBy(orderBy)
+                    .limit(size)
                     .queryList();
 
 

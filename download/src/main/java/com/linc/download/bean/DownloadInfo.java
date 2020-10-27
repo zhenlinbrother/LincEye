@@ -18,7 +18,7 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
  * @since [产品/模块版本]
  */
 @Table(database = DownloadDB.class)
-public class DownloadInfo extends BaseModel {
+public class DownloadInfo extends BaseModel{
 
     @PrimaryKey(autoincrement = true)
     private long id;

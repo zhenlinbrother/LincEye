@@ -7,4 +7,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="MineTextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">25.5dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginTop">45dp</item>
+        <item name="android:textColor">@color/main_text_color</item>
+    </style>
 </resources>
